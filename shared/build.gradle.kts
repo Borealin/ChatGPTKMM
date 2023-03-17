@@ -1,10 +1,10 @@
-import version.gradle.Depends
-
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
-    id("version.gradle")
+    kotlin(Plugins.kotlinMultiplatform)
+    kotlin(Plugins.kotlinSerialization)
+    kotlin(Plugins.cocoapods)
+    id(Plugins.androidLibrary)
+    id(Plugins.nativeCoroutines)
+    id(Plugins.sqlDelight)
 }
 
 kotlin {
@@ -33,22 +33,40 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Depends.coroutinesCore)
-                implementation(Depends.ktorClientCore)
-                implementation(Depends.ktorClientContentNegotiation)
-                implementation(Depends.ktorSerializationKotlinxJSON)
-                implementation(Depends.sqlDelightRuntime)
+                implementation(SharedCommonMainDependencies.kotlinxCoroutines)
+                implementation(SharedCommonMainDependencies.kotlinxSerialization)
+                implementation(SharedCommonMainDependencies.kotlinxSerializationJSON)
+                implementation(SharedCommonMainDependencies.kotlinxDatetime)
+
+                implementation(SharedCommonMainDependencies.ktorCore)
+                implementation(SharedCommonMainDependencies.ktorLogging)
+                implementation(SharedCommonMainDependencies.ktorContentNegotiation)
+                implementation(SharedCommonMainDependencies.ktorSerializationKotlinxJSON)
+
+                implementation(SharedCommonMainDependencies.sqlDelight)
+                implementation(SharedCommonMainDependencies.sqlDelightCoroutine)
+
+                implementation(SharedCommonMainDependencies.multiplatformSettings)
+                implementation(SharedCommonMainDependencies.multiplatformSettingsCoroutines)
+
+                api(SharedCommonMainDependencies.napier)
+
+                api(SharedCommonMainDependencies.koinCore)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(SharedCommonTestDependencies.ktorMock)
+                implementation(SharedCommonTestDependencies.multiplatformSettingsTest)
+                implementation(SharedCommonTestDependencies.kotlinxTestResources)
+                implementation(SharedCommonTestDependencies.kotlinxCoroutinesTest)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(Depends.ktorClientAndroid)
-                implementation(Depends.sqlDelightAndroidDriver)
+                implementation(SharedAndroidMainDependencies.ktorClientAndroid)
+                implementation(SharedAndroidMainDependencies.sqlDelightAndroidDriver)
             }
         }
         val androidUnitTest by getting
@@ -61,8 +79,8 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation(Depends.ktorClientDarwin)
-                implementation(Depends.sqlDelightNativeDriver)
+                implementation(SharedIosMainDependencies.ktorClientDarwin)
+                implementation(SharedIosMainDependencies.sqlDelightNativeDriver)
             }
         }
         val iosX64Test by getting
@@ -78,10 +96,16 @@ kotlin {
 }
 
 android {
-    namespace = "cn.borealin.chatgptkmm"
-    compileSdk = 33
+    namespace = SharedAndroidSdk.namespace
+    compileSdk = SharedAndroidSdk.compileSdk
     defaultConfig {
-        minSdk = 24
-        targetSdk = 33
+        minSdk = SharedAndroidSdk.minSdk
+        targetSdk = SharedAndroidSdk.targetSdk
+    }
+}
+
+sqldelight {
+    database(SharedSQLDelight.databaseName) {
+        packageName = SharedSQLDelight.packageName
     }
 }

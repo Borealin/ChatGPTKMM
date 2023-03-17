@@ -15,6 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ChatGPT_KMM"
-includeBuild("version-gradle")
 include(":androidApp")
 include(":shared")

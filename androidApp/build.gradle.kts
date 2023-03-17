@@ -1,26 +1,23 @@
-import version.gradle.Depends
-
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("version.gradle")
+    id(Plugins.androidApplication)
+    kotlin(Plugins.kotlinAndroid)
 }
 
 android {
-    namespace = "cn.borealin.chatgptkmm.android"
-    compileSdk = 33
+    namespace = AndroidSdk.nameSpace
+    compileSdk = AndroidSdk.compileSdkVersion
     defaultConfig {
-        applicationId = "cn.borealin.chatgptkmm.android"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AndroidSdk.applicationId
+        minSdk = AndroidSdk.minSdkVersion
+        targetSdk = AndroidSdk.targetSdkVersion
+        versionCode = AndroidSdk.versionCode
+        versionName = AndroidSdk.versionName
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
     packagingOptions {
         resources {
@@ -43,10 +40,42 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(Depends.composeUI)
-    implementation(Depends.composeUITooling)
-    implementation(Depends.composeUIToolingPreview)
-    implementation(Depends.composeFoundation)
-    implementation(Depends.composeMaterial)
-    implementation(Depends.composeActivity)
+
+    implementation(AndroidDependencies.kotlinStdlib)
+    implementation(AndroidDependencies.androidCore)
+    implementation(AndroidDependencies.appCompat)
+
+    val composeBom = platform(AndroidDependencies.composeBom)
+    implementation(composeBom)
+    implementation(AndroidDependencies.composeFoundation)
+    implementation(AndroidDependencies.composeUI)
+    implementation(AndroidDependencies.composeUIToolingPreview)
+    implementation(AndroidDependencies.composeMaterial3)
+    implementation(AndroidDependencies.composeMaterial)
+    implementation(AndroidDependencies.composeMaterialIconsExtended)
+    implementation(AndroidDependencies.composeMaterial3WindowSizeClass)
+    implementation(AndroidDependencies.activityCompose)
+    implementation(AndroidDependencies.composeMarkdown)
+    implementation(AndroidDependencies.coilCompose)
+
+    implementation(AndroidDependencies.accompanistInsets)
+    implementation(AndroidDependencies.accompanistSystemUIController)
+    implementation(AndroidDependencies.accompanistPager)
+    implementation(AndroidDependencies.accompanistPagerIndicators)
+    implementation(AndroidDependencies.accompanistPlaceholderMaterial)
+    implementation(AndroidDependencies.accompanistNavigationAnimation)
+
+    implementation(AndroidDependencies.navigationCompose)
+
+    implementation(AndroidDependencies.lifecycleRuntime)
+
+    implementation(AndroidDependencies.koinAndroid)
+    implementation(AndroidDependencies.koinCompose)
+
+
+    androidTestImplementation(composeBom)
+    debugImplementation(AndroidDependencies.composeUITooling)
+    androidTestImplementation(AndroidDependencies.composeUITestJunit4)
+    debugImplementation(AndroidDependencies.composeUITestManifest)
+    debugImplementation(AndroidDependencies.leakCanary)
 }

@@ -1,10 +1,18 @@
+import shared
 import SwiftUI
 
 @main
 struct iOSApp: App {
-	var body: some Scene {
-		WindowGroup {
-			ContentView()
-		}
-	}
+    init() {
+        KoinApplication.start()
+        #if DEBUG
+        NapierInit().doInit()
+        #endif
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            ChatScreen()
+        }
+    }
 }
