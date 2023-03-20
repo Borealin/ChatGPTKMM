@@ -30,7 +30,7 @@ fun ChatMessageBubble(message: ChatMessageViewData) {
         horizontalArrangement = if (message.role.isUser) Arrangement.End else Arrangement.Start
     ) {
         if (!message.role.isUser) {
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.fillMaxWidth(0.05f))
         }
 
         Surface(
@@ -57,7 +57,7 @@ fun ChatMessageBubble(message: ChatMessageViewData) {
         }
 
         if (message.role.isUser) {
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.fillMaxWidth(0.05f))
         }
     }
 }

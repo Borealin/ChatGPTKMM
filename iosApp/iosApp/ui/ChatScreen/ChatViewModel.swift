@@ -18,7 +18,7 @@ class ChatViewModel: ObservableObject {
     @LazyKoin private var sharedVM: SharedChatVM
     private var cancellables: [AnyCancellable] = []
 
-    @Published var chatMessages: [ChatMessageViewData] = []
+    @Published private(set) var chatMessages: [ChatMessageViewData] = []
     @Published private var _typingMessage: String = ""
     var typingMessage: String {
         get {

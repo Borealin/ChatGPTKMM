@@ -1,11 +1,13 @@
 package cn.borealin.chatgptkmm.android.ui.chat
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,6 +32,7 @@ import cn.borealin.chatgptkmm.android.ui.components.ShowToast
 import cn.borealin.chatgptkmm.shared.entity.ChatMessageViewData
 import cn.borealin.chatgptkmm.shared.entity.ChatRole
 import cn.borealin.chatgptkmm.shared.vm.SharedChatVM
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import org.koin.androidx.compose.get
 
 @Composable
@@ -61,14 +64,16 @@ private fun ChatScreenInner(
         if (messages.isEmpty()) return@LaunchedEffect
         listState.animateScrollToItem(messages.size - 1)
     }
-    Column(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            items(messages.filter { it.role.isShow }) { message ->
-                ChatMessageBubble(message)
+    Box(Modifier.imePadding()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                items(messages.filter { it.role.isShow }) { message ->
+                    ChatMessageBubble(message)
+                }
             }
         }
 

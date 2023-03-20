@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		F30BC61B6588DE759C824037 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC793D1A64B73BC2C8E1C59 /* Pods_iosApp.framework */; };
 		FA489AC629C4180000CA4B05 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA489AC529C4180000CA4B05 /* Koin.swift */; };
 		FA489ACC29C46A8300CA4B05 /* ToastExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA489ACB29C46A8300CA4B05 /* ToastExtension.swift */; };
+		FA489ACF29C48A3E00CA4B05 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA489ACE29C48A3E00CA4B05 /* MarkdownUI */; };
+		FA489AD229C55F0C00CA4B05 /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = FA489AD129C55F0C00CA4B05 /* Splash */; };
+		FA489AD429C55F5F00CA4B05 /* SplashCodeSyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA489AD329C55F5F00CA4B05 /* SplashCodeSyntaxHighlighter.swift */; };
+		FA489AD629C55F7A00CA4B05 /* TextOutputFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA489AD529C55F7A00CA4B05 /* TextOutputFormat.swift */; };
+		FA489ADA29C8052700CA4B05 /* TapToDismissFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA489AD929C8052700CA4B05 /* TapToDismissFocus.swift */; };
 		FAAC7CEE29C3122500AFE894 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC7CED29C3122500AFE894 /* ChatMessageBubble.swift */; };
 		FAAC7CF429C3133400AFE894 /* ChatScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC7CF329C3133400AFE894 /* ChatScreen.swift */; };
 		FAACE98029C40F0100E4B308 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE97F29C40F0100E4B308 /* ChatViewModel.swift */; };
@@ -29,6 +34,9 @@
 		B8B1C8F960AE0B8EDF55A8A5 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FA489AC529C4180000CA4B05 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		FA489ACB29C46A8300CA4B05 /* ToastExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastExtension.swift; sourceTree = "<group>"; };
+		FA489AD329C55F5F00CA4B05 /* SplashCodeSyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCodeSyntaxHighlighter.swift; sourceTree = "<group>"; };
+		FA489AD529C55F7A00CA4B05 /* TextOutputFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOutputFormat.swift; sourceTree = "<group>"; };
+		FA489AD929C8052700CA4B05 /* TapToDismissFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToDismissFocus.swift; sourceTree = "<group>"; };
 		FAAC7CED29C3122500AFE894 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
 		FAAC7CF329C3133400AFE894 /* ChatScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreen.swift; sourceTree = "<group>"; };
 		FAACE97F29C40F0100E4B308 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -40,6 +48,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30BC61B6588DE759C824037 /* Pods_iosApp.framework in Frameworks */,
+				FA489ACF29C48A3E00CA4B05 /* MarkdownUI in Frameworks */,
+				FA489AD229C55F0C00CA4B05 /* Splash in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				FA489ACB29C46A8300CA4B05 /* ToastExtension.swift */,
+				FA489AD329C55F5F00CA4B05 /* SplashCodeSyntaxHighlighter.swift */,
+				FA489AD529C55F7A00CA4B05 /* TextOutputFormat.swift */,
+				FA489AD929C8052700CA4B05 /* TapToDismissFocus.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -171,6 +184,10 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				FA489ACE29C48A3E00CA4B05 /* MarkdownUI */,
+				FA489AD129C55F0C00CA4B05 /* Splash */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +216,10 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				FA489ACD29C48A3E00CA4B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				FA489AD029C55F0C00CA4B05 /* XCRemoteSwiftPackageReference "Splash" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,12 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA489AD629C55F7A00CA4B05 /* TextOutputFormat.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FAACE98029C40F0100E4B308 /* ChatViewModel.swift in Sources */,
 				FAAC7CF429C3133400AFE894 /* ChatScreen.swift in Sources */,
+				FA489ADA29C8052700CA4B05 /* TapToDismissFocus.swift in Sources */,
 				FA489AC629C4180000CA4B05 /* Koin.swift in Sources */,
 				FAAC7CEE29C3122500AFE894 /* ChatMessageBubble.swift in Sources */,
 				FA489ACC29C46A8300CA4B05 /* ToastExtension.swift in Sources */,
+				FA489AD429C55F5F00CA4B05 /* SplashCodeSyntaxHighlighter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -385,7 +409,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -459,6 +483,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA489ACD29C48A3E00CA4B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		FA489AD029C55F0C00CA4B05 /* XCRemoteSwiftPackageReference "Splash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Splash";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA489ACE29C48A3E00CA4B05 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA489ACD29C48A3E00CA4B05 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+		FA489AD129C55F0C00CA4B05 /* Splash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA489AD029C55F0C00CA4B05 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = Splash;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

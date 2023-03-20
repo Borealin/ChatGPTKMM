@@ -13,7 +13,7 @@ struct ChatScreen: View {
     @State private var showToast: Bool = false
     var body: some View {
         ChatScreenInner(
-            chatMessages: $viewModel.chatMessages,
+            chatMessages: viewModel.chatMessages,
             typingMessage: $viewModel.typingMessage
         ) {
             viewModel.getCompletion()
@@ -25,17 +25,27 @@ struct ChatScreen: View {
 }
 
 struct ChatScreenInner: View {
-    @Binding var chatMessages: [ChatMessageViewData]
+    var chatMessages: [ChatMessageViewData]
     @Binding var typingMessage: String
+    @FocusState private var isTextFieldFocused: Bool
     let getCompletion: () -> Void
 
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVStack {
-                    ForEach(chatMessages.filter { $0.role.isShow }, id: \.id) { message in
-                        ChatMessageBubble(message: message)
+            ScrollViewReader { scrollView in
+                ScrollView {
+                    LazyVStack {
+                        ForEach(chatMessages.filter { $0.role.isShow }, id: \.self) { message in
+                            ChatMessageBubble(message: message)
+                        }
                     }
+                }.onChange(of: chatMessages) { _ in
+                    let count = chatMessages.count
+                    guard count > 0 else {
+                        return
+                    }
+                    isTextFieldFocused = false
+                    scrollView.scrollTo(chatMessages[count - 1], anchor: .bottom)
                 }
             }
             .padding(.top)
@@ -44,6 +54,7 @@ struct ChatScreenInner: View {
                 TextField("Type a message", text: $typingMessage)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
+                    .focused($isTextFieldFocused)
 
                 Button(action: {
                     getCompletion()
@@ -56,6 +67,7 @@ struct ChatScreenInner: View {
             .padding(.bottom)
         }
         .navigationBarTitle("", displayMode: .automatic)
+        .modifier(TapToDismissFocus(focusState: _isTextFieldFocused))
     }
 }
 
@@ -65,7 +77,7 @@ struct ChatScreenInnerPreview: View {
     @State var typingMessage: String = ""
     var body: some View {
         ChatScreenInner(
-            chatMessages: $chatMessages,
+            chatMessages: chatMessages,
             typingMessage: $typingMessage
         ) {}
     }
@@ -75,8 +87,8 @@ struct ChatScreen_Previews: PreviewProvider {
     @State var typingMessage: String
     static var previews: some View {
         ChatScreenInnerPreview(chatMessages: [
-            ChatMessageViewData(role: .user, isLoading: false, content: "Hello", id: UUID().uuidString),
-            ChatMessageViewData(role: .assistant, isLoading: false, content: "Hello too", id: UUID().uuidString),
+            ChatMessageViewData(role: .user, isLoading: false, content: "Hello"),
+            ChatMessageViewData(role: .assistant, isLoading: false, content: "Hello too"),
         ])
     }
 }
